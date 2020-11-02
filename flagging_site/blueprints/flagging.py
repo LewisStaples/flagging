@@ -6,7 +6,7 @@ from flask import request
 from flask import current_app
 from flask import flash
 
-from ..data.manual_overrides import get_currently_overridden_reaches
+from ..data.manual_overrides import get_currently_overridden_boathouses
 from ..data.predictive_models import latest_model_outputs
 from ..data.database import get_boathouse_by_reach_dict
 from ..data.database import get_latest_time
@@ -80,7 +80,7 @@ def stylize_model_output(df: pd.DataFrame) -> str:
 def parse_model_outputs(df: pd.DataFrame) -> dict:
     df = df.set_index('reach')
 
-    overridden_reaches = get_currently_overridden_reaches()
+    overridden_reaches = get_currently_overridden_boathouses()
 
     flags = {
         reach: val['safe'] and reach not in overridden_reaches

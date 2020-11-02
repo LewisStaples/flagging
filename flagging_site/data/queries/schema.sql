@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS model_outputs (
 
 DROP TABLE IF EXISTS manual_overrides;
 CREATE TABLE IF NOT EXISTS manual_overrides (
-    reach           int,
+    boathouse       varchar(255),
     start_time      timestamp,
     end_time        timestamp,
     reason          varchar(255)

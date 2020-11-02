@@ -36,12 +36,12 @@ def compose_tweet() -> str:
         River.
     """
     from .data.predictive_models import latest_model_outputs
-    from .data.manual_overrides import get_currently_overridden_reaches
+    from .data.manual_overrides import get_currently_overridden_boathouses
 
     df = latest_model_outputs()
     df = df.set_index('reach')
 
-    overridden_reaches = get_currently_overridden_reaches()
+    overridden_reaches = get_currently_overridden_boathouses()
 
     flags = {
         reach: val['safe'] and reach not in overridden_reaches
