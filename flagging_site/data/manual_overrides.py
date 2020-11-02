@@ -48,5 +48,5 @@ def get_currently_overridden_boathouses() -> Set[int]:
     return set(
         execute_sql_from_file(
             'currently_overridden_boathouses.sql'
-        )["reach"].unique()
+        )["boathouse"].unique()
     )

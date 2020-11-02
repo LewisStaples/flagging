@@ -41,10 +41,10 @@ def compose_tweet() -> str:
     df = latest_model_outputs()
     df = df.set_index('reach')
 
-    overridden_reaches = get_currently_overridden_boathouses()
+    overridden_boathouses = get_currently_overridden_boathouses()
 
     flags = {
-        reach: val['safe'] and reach not in overridden_reaches
+        reach: val['safe'] and reach not in overridden_boathouses
         for reach, val
         in df.to_dict(orient='index').items()
     }

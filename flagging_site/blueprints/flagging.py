@@ -80,10 +80,10 @@ def stylize_model_output(df: pd.DataFrame) -> str:
 def parse_model_outputs(df: pd.DataFrame) -> dict:
     df = df.set_index('reach')
 
-    overridden_reaches = get_currently_overridden_boathouses()
+    overridden_boathouses = get_currently_overridden_boathouses()
 
     flags = {
-        reach: val['safe'] and reach not in overridden_reaches
+        reach: val['safe'] and reach not in overridden_boathouses
         for reach, val
         in df.to_dict(orient='index').items()
     }
