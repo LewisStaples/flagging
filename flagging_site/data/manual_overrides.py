@@ -11,7 +11,7 @@ from .database import execute_sql_from_file
 
 
 class ManualOverrides(Base):
-    __tablename__ = 'cyano_overrides'
+    __tablename__ = 'manual_overrides'
     reach = Column(Integer, primary_key=True)
     start_time = Column(TIMESTAMP, primary_key=True)
     end_time = Column(TIMESTAMP, primary_key=True)

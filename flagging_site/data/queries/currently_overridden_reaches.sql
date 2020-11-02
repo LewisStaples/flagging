@@ -1,3 +1,3 @@
 SELECT reach
-FROM cyano_overrides
+FROM manual_overrides
 WHERE current_timestamp BETWEEN start_time AND end_time
