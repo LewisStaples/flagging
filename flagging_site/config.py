@@ -228,7 +228,7 @@ class DevelopmentConfig(Config):
     the vault hasn't been loaded but doesn't prevent the website from loading
     just because the vault is not open.
     """
-    SQLALCHEMY_ECHO: bool = True
+    SQLALCHEMY_ECHO: bool = False
     VAULT_OPTIONAL: bool = True
     DEBUG: bool = True
     TESTING: bool = True

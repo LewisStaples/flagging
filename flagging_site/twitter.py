@@ -41,6 +41,8 @@ def compose_tweet() -> str:
     df = latest_model_outputs()
     df = df.set_index('reach')
 
+    # note that this needs to be rewritten, too !
+    # (no longer overriding by reach)
     overridden_boathouses = get_currently_overridden_boathouses()
 
     flags = {
