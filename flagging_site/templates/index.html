@@ -17,36 +17,9 @@
         monitoring is conducted every 1-2 weeks.
     </p>
 
-<h2>[ BRING BACK "Water Quality Today" ]</h2>
-<!-- {% if boating_season %}
 <h2>Water Quality Today</h2>
-    <table class="home-reach">
-        {% for reach_no, reach in homepage.items() %}
-        <tr>
-            <td class="home-reach">
-                <div><strong>Reach {{ reach_no }}</strong></div>
-                <ul class="home-boat-house">
-                    {% for boathouse in reach['boathouses'] %}
-                    <li> {{ boathouse }} </li>
-                    {% endfor %}
-                </ul>
-            </td>
-            {% if reach.flag %}
-            <td class="home-reach flag"><img class="flag" src="{{ url_for('static', filename='images/blue_flag.png') }}" /></td>
-            {% else %}
-            <td class="home-reach flag"><img class="flag" src="{{ url_for('static', filename='images/red_flag.png') }}" /></td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </table>
-    {% for key, value in homepage.items() %}
-        <p class="centered">
-            {% if loop.last %}
-            (Last updated: {{model_last_updated_time}})
-            {% endif %}
-        </p>
-    {% endfor %}
-{% endif %} -->
+<iframe src="flags" title="Water Quality Today" height=1000 width=900></iframe> 
+
 <h2>Stay Updated</h2>
 <p>
     The best way to keep up with the CRWA flagging updates is to <a href="https://www.crwa.org/flagging-program.html">sign

@@ -140,8 +140,7 @@ def parse_model_outputs(model_output_df: pd.DataFrame) -> dict:
     # for flag_reach, flag_safe in flags.items():
     #     boathouse_statuses[flag_reach]['flag'] = flag_safe
 
-    return boathouse_statuses
-
+    return flags
 
 
 @bp.route('/')
