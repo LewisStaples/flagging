@@ -174,28 +174,6 @@ class Boathouses(db.Model):
     longitude: float = db.Column(db.Numeric, unique=False)
 
 
-def get_boathouse_by_reach_dict():
-    """
-    Return a dict of boathouses, indexed by reach
-    """
-    # return value is an outer dictionary with the reach number as the keys 
-    # and the a sub-dict as the values each sub-dict has the string 'boathouses' 
-    # as the key, and an array of boathouse names as the value
-    boathouse_dict = {}
-    
-    # outer boathouse loop:  take one reach at a time
-    for bh_out in Boathouses.query.distinct(Boathouses.reach):
-        bh_list = []
-        # inner boathouse loop:  get all boathouse names within 
-        # the reach (the reach that was selected by outer loop)
-        for bh_in in Boathouses.query.filter(Boathouses.reach == bh_out.reach).all():
-            bh_list.append(bh_in.boathouse)
-
-        boathouse_dict[bh_out.reach] = {'boathouses': bh_list}
-
-    return boathouse_dict
-
-
 def get_boathouse_metadata_dict():
     """
     Return a dictionary of boathouses' metadata

@@ -8,7 +8,8 @@ from flask import flash
 
 from ..data.manual_overrides import get_currently_overridden_boathouses
 from ..data.predictive_models import latest_model_outputs
-from ..data.database import get_boathouse_by_reach_dict
+# from ..data.database import get_boathouse_by_reach_dict
+from ..data.database import get_boathouse_metadata_dict
 from ..data.database import get_latest_time
 
 bp = Blueprint('flagging', __name__)
@@ -80,65 +81,19 @@ def stylize_model_output(df: pd.DataFrame) -> str:
 def parse_model_outputs(model_output_df: pd.DataFrame) -> dict:
     model_output_df = model_output_df.set_index('reach')
 
-    overridden_boathouses = get_currently_overridden_boathouses()
-    boathouse_statuses = get_boathouse_by_reach_dict()
-
+    boathouses = get_boathouse_metadata_dict()['boathouses']
     flags = {}
 
-    print('\n\n\n\n\n\n\n')
-    # print(model_output_df['safe'][5])
-
-
-    # loop through all reaches
-    for reach in boathouse_statuses:
-        print('reach # ' + str(reach))
-
-        # loop through all boathouses in that reach
-        for boathouse in boathouse_statuses[reach]['boathouses']:
-            print(boathouse)
-            # set all boathouses in each reach according to model output
-            flags[boathouse] = model_output_df['safe'][reach]
-        print()
+    # loop through all boathouses
+    for boathouse in boathouses:
+        flags[boathouse.boathouse] = model_output_df['safe'][boathouse.reach]
 
     # then set any and all overriden boathouses to False (Irregardless of model output)
+    overridden_boathouses = get_currently_overridden_boathouses()
+
     for or_boathouse in overridden_boathouses:
         print(or_boathouse)
         flags[or_boathouse] = False
-
-
-    print('\n\n')
-    print('model_output_df')
-    print(model_output_df)
-
-    print('\n\n')
-    print('model_output_df reaches')
-    print(type(model_output_df.index.values))
-    print(model_output_df.index.values)
-    print(model_output_df)
-
-    print('\n\n')
-    print('overridden_boathouses')
-    print(overridden_boathouses)
-
-    print('\n\n')
-    print('flags')
-    print(flags)
-
-    print('\n\n')
-    print('keys from boathouse_statuses')
-    print( boathouse_statuses.keys() )
-
-    print('\n\n')
-    print('boathouses')
-    print(boathouse_statuses)
-    print('\n\n')
-
-    # verify that the same reaches are in boathouse list and model outputs
-    # if flags.keys() != boathouse_statuses.keys():
-    #     print('ERROR!  the reaches are\'t identical between boathouse list and model outputs!')
-
-    # for flag_reach, flag_safe in flags.items():
-    #     boathouse_statuses[flag_reach]['flag'] = flag_safe
 
     return flags
 
