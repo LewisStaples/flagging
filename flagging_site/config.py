@@ -47,7 +47,7 @@ class Config:
     # ==========================================================================
     DEBUG: bool = False
     TESTING: bool = False
-    SECRET_KEY: str = None  # Note: Loaded from vault
+    SECRET_KEY: str = os.getenv('SECRET_KEY')
 
     # ==========================================================================
     # DATABASE CONFIG OPTIONS
@@ -99,21 +99,28 @@ class Config:
 
     VAULT_PASSWORD: str = os.getenv('VAULT_PASSWORD')
 
+    HOBOLINK_AUTH_PWD: str = os.getenv('HOBOLINK_AUTH_PWD')
+    HOBOLINK_AUTH_USR: str = os.getenv('HOBOLINK_AUTH_USR')
+    HOBOLINK_AUTH_TKN: str = os.getenv('HOBOLINK_AUTH_TKN')
+
     HOBOLINK_AUTH: dict = {
-       'password': None,
-       'user': None,
-       'token': None
+       'password': HOBOLINK_AUTH_PWD,
+       'user': HOBOLINK_AUTH_USR,
+       'token': HOBOLINK_AUTH_TKN
     }
-    """Note: Do not fill these out manually; the HOBOlink auth gets populated
-    from the vault.
-    """
+
+    TWITTER_AUTH_API_KEY: str = os.getenv('TWITTER_AUTH_')
+    TWITTER_AUTH_API_KEY_SCRT: str = os.getenv('TWITTER_AUTH_')
+    TWITTER_AUTH_ACC_TKN: str = os.getenv('TWITTER_AUTH_')
+    TWITTER_AUTH_ACC_TKN_SCRT: str = os.getenv('TWITTER_AUTH_')
+    TWITTER_AUTH_BRER_TKN: str = os.getenv('TWITTER_AUTH_')
 
     TWITTER_AUTH: dict = {
-        'api_key': None,
-        'api_key_secret': None,
-        'access_token': None,
-        'access_token_secret': None,
-        'bearer_token': None
+        'api_key': TWITTER_AUTH_API_KEY,
+        'api_key_secret': TWITTER_AUTH_API_KEY_SCRT,
+        'access_token': TWITTER_AUTH_ACC_TKN,
+        'access_token_secret': TWITTER_AUTH_ACC_TKN_SCRT,
+        'bearer_token': TWITTER_AUTH_BRER_TKN
     }
     """Note: Do not fill these out manually; the Twitter auth gets populated
     from the vault.
